@@ -125,6 +125,7 @@ public:
     void pushFront(Node* node);
     Node* popFront();
     Node* popBack();
+    void clear();
 };
 
 /**
@@ -250,6 +251,8 @@ void oddEvenShuffle(GameState& game_state) {
     while (!even_pile.empty()) {
         game_state.draw_pile_.pushBack(even_pile.popFront());
     }
+    odd_pile.clear();
+    even_pile.clear();
 }
     
 // ======================================================
@@ -378,6 +381,12 @@ Node* Pile::popBack() {
     node->next = node->prev = nullptr;
     size_--;
     return node;
+}
+
+void Pile::clear() {
+    head_ = nullptr;
+    tail_ = nullptr;
+    size_ = 0;
 }
 
 // ======================================================
